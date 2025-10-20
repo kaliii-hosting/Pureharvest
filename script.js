@@ -51,29 +51,55 @@ document.addEventListener('DOMContentLoaded', function() {
   // Message Button and Modal Functionality
   const messageBtn = document.getElementById('messageBtn');
   const messageModal = document.getElementById('messageModal');
-  const messageModalClose = document.querySelector('.message-modal-close');
+  const glassClose = document.querySelector('.glass-close');
   const messageForm = document.getElementById('messageForm');
+  const successPopup = document.getElementById('successPopup');
 
   // Open modal
   messageBtn.addEventListener('click', () => {
     messageModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
   });
 
   // Close modal
-  messageModalClose.addEventListener('click', () => {
+  glassClose.addEventListener('click', () => {
     messageModal.classList.remove('show');
+    document.body.style.overflow = '';
   });
 
-  // Close modal when clicking outside
+  // Close modal when clicking on background
   messageModal.addEventListener('click', (e) => {
     if (e.target === messageModal) {
       messageModal.classList.remove('show');
+      document.body.style.overflow = '';
     }
+  });
+
+  // Show success popup
+  function showSuccessPopup() {
+    successPopup.classList.add('show');
+
+    // Auto-close after 3 seconds
+    setTimeout(() => {
+      successPopup.classList.remove('show');
+      document.body.style.overflow = '';
+    }, 3000);
+  }
+
+  // Close success popup on click
+  successPopup.addEventListener('click', () => {
+    successPopup.classList.remove('show');
+    document.body.style.overflow = '';
   });
 
   // Handle form submission
   messageForm.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    const submitBtn = messageForm.querySelector('.glass-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
 
     const name = document.getElementById('userName').value;
     const email = document.getElementById('userEmail').value;
@@ -88,12 +114,50 @@ document.addEventListener('DOMContentLoaded', function() {
         timestamp: serverTimestamp()
       });
 
-      alert('Message sent successfully! We\'ll get back to you soon.');
-      messageForm.reset();
+      // Close modal
       messageModal.classList.remove('show');
+
+      // Reset form
+      messageForm.reset();
+
+      // Show success popup with animation
+      setTimeout(() => {
+        showSuccessPopup();
+      }, 300);
+
     } catch (error) {
       console.error('Error:', error);
       alert('Failed to send message. Please try again.');
+    } finally {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
     }
+  });
+
+  // Admin access via footer
+  const adminAccess = document.getElementById('adminAccess');
+  adminAccess.addEventListener('click', () => {
+    window.location.href = '/admin';
+  });
+
+  // Email button functionality
+  const emailBtn = document.getElementById('emailBtn');
+  emailBtn.addEventListener('click', () => {
+    const name = document.getElementById('userName').value;
+    const email = document.getElementById('userEmail').value;
+    const message = document.getElementById('userMessage').value;
+
+    if (!name || !email || !message) {
+      alert('Please fill in all fields before sending via email.');
+      return;
+    }
+
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Contact Form Submission from ${name}`);
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    const mailtoLink = `mailto:info@pureharvest.shop?subject=${subject}&body=${body}`;
+
+    // Open default email client
+    window.location.href = mailtoLink;
   });
 });

@@ -322,7 +322,7 @@ button {
   height: 26px;
 }
 
-/* Message Modal */
+/* Message Modal - Glassmorphism */
 .message-modal {
   display: none;
   position: fixed;
@@ -331,8 +331,6 @@ button {
   top: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
   animation: fadeIn 0.3s ease;
 }
 
@@ -351,103 +349,326 @@ button {
   }
 }
 
-.message-modal-content {
-  background-color: #ffffff;
-  padding: 2.5rem;
-  border-radius: 20px;
-  max-width: 500px;
-  width: 90%;
+/* Glass Background with animated shapes */
+.glass-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glass-background .shape {
+  height: 200px;
+  width: 200px;
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+  animation: float 8s ease-in-out infinite;
+}
+
+.glass-background .shape:first-child {
+  background: linear-gradient(#1845ad, #23a2f6);
+  left: -80px;
+  top: -80px;
+  animation-delay: 0s;
+}
+
+.glass-background .shape:last-child {
+  background: linear-gradient(to right, #ff512f, #f09819);
+  right: -30px;
+  bottom: -80px;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translateY(-20px) translateX(20px);
+  }
+  50% {
+    transform: translateY(20px) translateX(-20px);
+  }
+  75% {
+    transform: translateY(-10px) translateX(10px);
+  }
+}
+
+/* Glass Form */
+.glass-form {
+  width: 400px;
+  max-width: 90%;
+  background: rgba(50, 50, 50, 0.4);
   position: relative;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  animation: slideUp 0.3s ease;
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  padding: 50px 40px;
+  animation: slideUp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: all;
 }
 
 @keyframes slideUp {
   from {
-    transform: translateY(50px);
+    transform: translateY(80px) scale(0.9);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     opacity: 1;
   }
 }
 
-.message-modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: none;
+.glass-form * {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+  outline: none;
   border: none;
-  font-size: 2rem;
-  color: #666;
+}
+
+.glass-form h3 {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-align: center;
+  margin: 0 0 25px 0;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.glass-form label {
+  display: block;
+  margin: 25px 0 0 0;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.glass-form input,
+.glass-form textarea {
+  display: block;
+  height: 50px;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0 15px;
+  margin: 8px 0 0 0;
+  font-size: 14px;
+  font-weight: 300;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.glass-form input:focus,
+.glass-form textarea:focus {
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.glass-form textarea {
+  height: 100px;
+  padding: 12px 15px;
+  resize: vertical;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+.glass-form ::placeholder {
+  color: #e5e5e5;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.glass-email-btn {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 5px;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  transition: background-color 0.2s ease;
+  flex-shrink: 0;
 }
 
-.message-modal-close:hover {
-  background-color: #f0f0f0;
+.glass-email-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
 }
 
-.message-modal-content h2 {
-  margin: 0 0 1.5rem 0;
-  color: #000;
-  font-size: 1.5rem;
+.glass-email-btn:active {
+  transform: translateY(0);
+}
+
+.glass-email-btn svg {
+  color: #ffffff;
+}
+
+.glass-submit {
+  margin: 0;
+  flex: 1;
+  background-color: #ffffff;
+  color: #080710;
+  padding: 15px 0;
+  font-size: 18px;
   font-weight: 600;
-}
-
-.message-modal-content form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.message-modal-content input,
-.message-modal-content textarea {
-  padding: 0.9rem;
-  border: 1.5px solid #ddd;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-family: PP Neue Montreal, Arial, sans-serif;
-  transition: border-color 0.2s ease;
-}
-
-.message-modal-content input:focus,
-.message-modal-content textarea:focus {
-  outline: none;
-  border-color: #000;
-}
-
-.message-modal-content textarea {
-  resize: vertical;
-  min-height: 100px;
-}
-
-.submit-btn {
-  padding: 1rem;
-  background-color: #000;
-  color: #fff;
-  border: none;
-  border-radius: 10px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-  font-family: PP Neue Montreal, Arial, sans-serif;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
 }
 
-.submit-btn:hover {
-  background-color: #333;
+.glass-submit:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
-.submit-btn:active {
-  transform: scale(0.98);
+.glass-submit:active {
+  transform: translateY(0);
+}
+
+.glass-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg);
+}
+
+/* Success Popup */
+.success-popup {
+  display: none;
+  position: fixed;
+  z-index: 10001;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.success-popup.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.success-content {
+  background: rgba(50, 50, 50, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  padding: 3rem 2.5rem;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.success-icon {
+  margin-bottom: 1.5rem;
+}
+
+.success-icon svg {
+  display: inline-block;
+}
+
+.circle-anim {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: drawCircle 0.6s ease-out forwards;
+}
+
+@keyframes drawCircle {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.check-anim {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawCheck 0.4s ease-out 0.4s forwards;
+}
+
+@keyframes drawCheck {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.success-content h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #ffffff;
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.success-content p {
+  font-family: 'Poppins', sans-serif;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
 }
 
 @media (max-width: 480px) {
@@ -458,11 +679,56 @@ button {
     right: 4vw;
   }
 
-  .message-modal-content {
+  .glass-form {
+    padding: 40px 30px;
+    width: 95%;
+  }
+
+  .glass-form h3 {
+    font-size: 18px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  .glass-form label {
+    margin-top: 20px;
+    font-size: 14px;
+  }
+
+  .glass-form input,
+  .glass-form textarea {
+    height: 45px;
+    font-size: 13px;
+  }
+
+  .glass-form textarea {
+    height: 90px;
+  }
+
+  .form-actions {
+    margin-top: 25px;
+  }
+
+  .glass-email-btn {
+    width: 46px;
+    height: 46px;
+  }
+
+  .glass-submit {
+    padding: 13px 0;
+    font-size: 16px;
+  }
+
+  .success-content {
     padding: 2rem 1.5rem;
   }
 
-  .message-modal-content h2 {
-    font-size: 1.3rem;
+  .success-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .success-icon svg {
+    width: 60px;
+    height: 60px;
   }
 }
