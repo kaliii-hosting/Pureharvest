@@ -58,12 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
   // Open modal
   messageBtn.addEventListener('click', () => {
     messageModal.classList.add('show');
+    document.body.classList.add('modal-open');
     document.body.style.overflow = 'hidden';
   });
 
   // Close modal
   glassClose.addEventListener('click', () => {
     messageModal.classList.remove('show');
+    document.body.classList.remove('modal-open');
     document.body.style.overflow = '';
   });
 
@@ -71,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
   messageModal.addEventListener('click', (e) => {
     if (e.target === messageModal) {
       messageModal.classList.remove('show');
+      document.body.classList.remove('modal-open');
       document.body.style.overflow = '';
     }
   });
@@ -116,6 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       // Close modal
       messageModal.classList.remove('show');
+      document.body.classList.remove('modal-open');
 
       // Reset form
       messageForm.reset();
