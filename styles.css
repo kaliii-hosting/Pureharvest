@@ -1,0 +1,468 @@
+/* ------- Osmo [https://osmo.supply/] ------- */
+/* Osmo UI: https://slater.app/10324/23333.css */
+
+:root {
+  --color-neutral-300: #ffffff;
+  --color-neutral-400: #f5f5f5;
+  --color-neutral-500: #999999;
+  --color-dark: #131313;
+  --color-primary: #ff0000;
+  --container-padding: 4em;
+}
+
+body {
+  background-image: url("https://fchtwxunzmkzbnibqbwl.supabase.co/storage/v1/object/public/kaliii/Pureharvest/phWc.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: var(--color-dark);
+  font-size: 1vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  cursor: url("https://cdn.prod.website-files.com/6708f85ff3d3cba6aff436fb/671251b239d7aeb290a31ac5_cursor-default%402x.svg")
+      2 0,
+    auto;
+}
+
+.logo-header {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  text-align: center;
+  margin-top: -22vh;
+  margin-bottom: 3vh;
+}
+
+.header-logo {
+  max-width: min(400px, 50vw);
+  max-height: 25vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+a,
+button {
+  cursor: url("https://cdn.prod.website-files.com/6708f85ff3d3cba6aff436fb/671251b212e6b71494aa67ff_cursor-pointer%402x.svg")
+      12 0,
+    pointer;
+}
+
+.cloneable {
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  position: relative;
+  margin-top: 12vh;
+  padding-top: 3vh;
+}
+
+.looping-words {
+  height: 2.7em;
+  padding-left: .1em;
+  padding-right: .1em;
+  font-size: min(14vw, 14vh);
+  line-height: .9;
+  position: relative;
+}
+
+.looping-words__list {
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-flow: column;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  font-family: PP Neue Corp, sans-serif;
+  font-weight: 700;
+  list-style: none;
+  display: flex;
+  position: relative;
+  color: #ffffff;
+}
+
+.looping-words__list.is--primary {
+  color: var(--color-primary);
+}
+
+.looping-words__list.is--gray {
+  color: var(--color-neutral-500);
+}
+
+.looping-words__fade {
+  display: none;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.looping-words__fade.is--radial {
+  background-image: radial-gradient(circle closest-side at 50% 50%, transparent 64%, var(--color-neutral-400) 93%);
+  width: 140%;
+  display: block;
+  left: -20%;
+}
+
+.looping-words__selector {
+  pointer-events: none;
+  width: 100%;
+  height: .9em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.looping-words__edge {
+  border-top: .035em solid var(--color-primary);
+  border-left: .035em solid var(--color-primary);
+  width: .125em;
+  height: .125em;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.looping-words__edge.is--2 {
+  left: auto;
+  right: 0;
+  transform: rotate(90deg);
+}
+
+.looping-words__edge.is--3 {
+  inset: auto 0 0 auto;
+  transform: rotate(180deg);
+}
+
+.looping-words__edge.is--4 {
+  top: auto;
+  bottom: 0;
+  transform: rotate(270deg);
+}
+
+.looping-words__containers {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.looping-words__p {
+  margin: 0;
+}
+
+.osmo-credits {
+  z-index: 999;
+  pointer-events: none;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  padding: 1vh 1em 2vh;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.osmo-credits__p {
+  pointer-events: auto;
+  color: #ffffff;
+  text-align: center;
+  margin: 0;
+  font-family: PP Neue Montreal, Arial, sans-serif;
+  font-size: max(0.8rem, min(1.125em, 2.5vh));
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.osmo-credits__p-a {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'PP Neue Corp';
+  src: url('https://cdn.prod.website-files.com/6717aac16c9ea22eeef1e79e/6717de2d56e40b921572d2d9_PPNeueCorp-TightUltrabold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('https://cdn.prod.website-files.com/6819ed8312518f61b84824df/6819ed8312518f61b84825ba_PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 2vw;
+  }
+
+  .looping-words {
+    font-size: min(16vw, 13vh);
+  }
+
+  .header-logo {
+    max-width: min(350px, 65vw);
+    max-height: 22vh;
+  }
+
+  .logo-header {
+    margin-top: -20vh;
+  }
+
+  .cloneable {
+    margin-top: 10vh;
+    padding-top: 3vh;
+  }
+
+  .osmo-credits__p {
+    font-size: max(0.85rem, min(1.1em, 2.2vh));
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    font-size: 3vw;
+  }
+
+  .looping-words {
+    font-size: min(18vw, 12vh);
+  }
+
+  .header-logo {
+    max-width: min(400px, 75vw);
+    max-height: 24vh;
+  }
+
+  .logo-header {
+    margin-top: -18vh;
+  }
+
+  .cloneable {
+    margin-top: 8vh;
+    padding-top: 3vh;
+  }
+
+  .osmo-credits__p {
+    font-size: max(0.8rem, min(1em, 2vh));
+  }
+}
+
+@media (orientation: landscape) and (max-height: 600px) {
+  .looping-words {
+    font-size: min(10vw, 13vh);
+  }
+
+  .header-logo {
+    max-height: 20vh;
+    max-width: min(300px, 40vw);
+  }
+
+  .logo-header {
+    margin-top: -20vh;
+  }
+
+  .cloneable {
+    margin-top: 10vh;
+    padding-top: 3vh;
+  }
+}
+
+/* Message Button */
+.message-btn {
+  position: fixed;
+  bottom: 6vh;
+  right: 2vw;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.message-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.message-btn:active {
+  transform: scale(0.95);
+}
+
+.message-btn svg {
+  color: #000000;
+  width: 26px;
+  height: 26px;
+}
+
+/* Message Modal */
+.message-modal {
+  display: none;
+  position: fixed;
+  z-index: 10000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(5px);
+  animation: fadeIn 0.3s ease;
+}
+
+.message-modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.message-modal-content {
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.message-modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #666;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+.message-modal-close:hover {
+  background-color: #f0f0f0;
+}
+
+.message-modal-content h2 {
+  margin: 0 0 1.5rem 0;
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.message-modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message-modal-content input,
+.message-modal-content textarea {
+  padding: 0.9rem;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: PP Neue Montreal, Arial, sans-serif;
+  transition: border-color 0.2s ease;
+}
+
+.message-modal-content input:focus,
+.message-modal-content textarea:focus {
+  outline: none;
+  border-color: #000;
+}
+
+.message-modal-content textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit-btn {
+  padding: 1rem;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-family: PP Neue Montreal, Arial, sans-serif;
+}
+
+.submit-btn:hover {
+  background-color: #333;
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 480px) {
+  .message-btn {
+    width: 56px;
+    height: 56px;
+    bottom: 7vh;
+    right: 4vw;
+  }
+
+  .message-modal-content {
+    padding: 2rem 1.5rem;
+  }
+
+  .message-modal-content h2 {
+    font-size: 1.3rem;
+  }
+}
