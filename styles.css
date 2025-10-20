@@ -38,6 +38,11 @@ body {
   margin-top: -22vh;
   margin-bottom: 3vh;
   transition: opacity 0.2s ease;
+  /* Prevent movement on mobile scroll */
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .header-logo {
@@ -218,6 +223,9 @@ button {
 @media (max-width: 768px) {
   body {
     font-size: 2vw;
+    /* Lock body position on mobile */
+    position: fixed;
+    overflow: hidden;
   }
 
   .looping-words {
@@ -231,6 +239,9 @@ button {
 
   .logo-header {
     margin-top: -20vh;
+    /* Ensure logo stays fixed on mobile */
+    position: fixed;
+    will-change: transform;
   }
 
   .cloneable {
@@ -246,6 +257,9 @@ button {
 @media (max-width: 480px) {
   body {
     font-size: 3vw;
+    /* Lock body position on mobile */
+    position: fixed;
+    overflow: hidden;
   }
 
   .looping-words {
@@ -259,6 +273,9 @@ button {
 
   .logo-header {
     margin-top: -18vh;
+    /* Ensure logo stays absolutely fixed */
+    position: fixed;
+    will-change: transform;
   }
 
   .cloneable {
